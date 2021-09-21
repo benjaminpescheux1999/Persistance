@@ -12,6 +12,7 @@ namespace Persistance
 {
     public partial class Form1 : Form
     {
+        //c joli tt ça
         public Form1()
         {
             InitializeComponent();

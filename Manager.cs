@@ -10,8 +10,12 @@ namespace Persistance
     {
         public string nom { get; set; }
         public string prenom { get; set; }
-        
-
+        public List<Vendeur> vendeurs;
+        public Manager(string nom, string prenom)
+        {
+            this.nom = nom;
+            this.prenom = prenom;
+        }
 
 
     }

@@ -8,13 +8,15 @@ namespace Persistance
 {
     class Magasin
     {
-        public string City { get; set; }
-        public string Name { get; set; }
+        public string Ville { get; set; }
+        public string Enseigne { get; set; }
+        public string Nom { get; set; }
 
-        public Magasin(string city, string name)
+        public Magasin(string ville, string enseigne, string nom)
         {
-            City = city;
-            Name = name;
+            this.Ville = ville;
+            this.Enseigne = enseigne;
+            this.Nom = enseigne + " " + ville;
         }
     }
 }

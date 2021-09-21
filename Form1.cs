@@ -14,7 +14,7 @@ namespace Persistance
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();//fzfgl;ezlgzg
         }
 
     }

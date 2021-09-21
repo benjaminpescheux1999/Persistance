@@ -12,7 +12,8 @@ namespace Persistance
         public string prenom { get; set; }
         public string fonction { get; set; }
         public string nomdumanager { get; set; }
-        public Vendeur()
+
+        public Vendeur(string nom, string prenom, string fonction, string nomdumanager)
         {
             this.nom = nom;
             this.prenom = prenom;

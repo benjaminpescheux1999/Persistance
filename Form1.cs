@@ -14,8 +14,12 @@ namespace Persistance
     {
         public Form1()
         {
-            InitializeComponent();//fzfgl;ezlgzg
+            InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Persistance
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ListMagasin());
+            Application.Run(new Login());
         }
     }
 }

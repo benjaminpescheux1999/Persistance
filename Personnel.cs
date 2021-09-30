@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Persistance
 {
-    class Personnel
+    public class Personnel
     {
+        public string id { get; set; }
         public string nom { get; set; }
         public string prenom { get; set; }
         public string mdp { get; set; }

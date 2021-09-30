@@ -25,21 +25,23 @@ namespace Persistance
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int status = ConnectionDb.Login(NamePers.Text, Password.Text);
-            richTextBox1.Text = status.ToString();
-            if (status ==1)
+            Personnel user = ConnectionDb.Login(NamePers.Text, Password.Text);
+
+            if (user.fonction == "Manager")
             {
                 this.Hide();
-                var HomeMan = new HomeMan();
+                var HomeMan = new HomeMan(user);
                 HomeMan.Closed += (s, args) => this.Close();
                 HomeMan.Show();
-            } else if (status == 2)
+            }
+            else if (user.fonction == "Commercial")
             {
                 this.Hide();
-                var HomeCom = new HomeCom();
+                var HomeCom = new HomeCom(user);
                 HomeCom.Closed += (s, args) => this.Close();
                 HomeCom.Show();
-            } else
+            }
+            else
             {
                 MessageBox.Show("Identifiants incorrect");
             }
@@ -62,7 +64,7 @@ namespace Persistance
 
         private void Password_TextChanged(object sender, EventArgs e)
         {
-
+            Password.PasswordChar = '*';
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

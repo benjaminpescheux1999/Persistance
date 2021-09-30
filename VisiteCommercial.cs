@@ -39,10 +39,7 @@ namespace Persistance
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            listBox1.Visible = true;
-            label1.Visible = true;
-            AfficherVisites(lesVisites);
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -62,31 +59,38 @@ namespace Persistance
             int selected = listBox1.SelectedIndex;
             try
             {
-                string txt = listBox1.SelectedItem.ToString();
-
-                String[] tab = txt.Split(" ");
-
-
-                if (ConnectionDb.VerifSuppressionVisite(tab[0], user))
+                if (listBox1.SelectedItem != null)
                 {
-                    if (listBox1.SelectedIndex != -1)
+                    string txt = listBox1.SelectedItem.ToString();
+
+                    String[] tab = txt.Split(" ");
+
+
+                    if (ConnectionDb.VerifSuppressionVisite(tab[0], user))
                     {
-                        string selecteditem = listBox1.SelectedItem.ToString();
-                        string[] tab2 = selecteditem.Split(" ");
-                        string id = tab2[0];
-                        ConnectionDb.DeleteItemVisite(id);
-                        listBox1.Items.RemoveAt(selected);
-                        lesVisites.RemoveAt(selected);
+                        if (listBox1.SelectedIndex != -1)
+                        {
+                            string selecteditem = listBox1.SelectedItem.ToString();
+                            string[] tab2 = selecteditem.Split(" ");
+                            string id = tab2[0];
+                            ConnectionDb.DeleteItemVisite(id);
+                            listBox1.Items.RemoveAt(selected);
+                            lesVisites.RemoveAt(selected);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vous ne pouvez supprimer que vos visites");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Vous ne pouvez supprimer que vos visites");
+                    MessageBox.Show("Selectionner une visite");
                 }
             }
             catch
             {
-                MessageBox.Show("Selectionner une visite");
+                
             }
 
         }
@@ -107,10 +111,55 @@ namespace Persistance
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var modifierVisite = new modifierVisite(user, ConnectionDb.AfficheMag());
-            modifierVisite.Closed += (s, args) => this.Close();
-            modifierVisite.Show();
+            //this.Hide();
+            //var modifierVisite = new modifierVisite(user, ConnectionDb.AfficheMag());
+            //modifierVisite.Closed += (s, args) => this.Close();
+            //modifierVisite.Show();
+
+            int selected = listBox1.SelectedIndex;
+            try
+            {
+                if (listBox1.SelectedItem != null)
+                {
+                    string txt = listBox1.SelectedItem.ToString();
+
+                    String[] tab = txt.Split(" ");
+
+
+                    if (ConnectionDb.VerifSuppressionVisite(tab[0], user))
+                    {
+                        if (listBox1.SelectedIndex != -1)
+                        {
+                            string selecteditem = listBox1.SelectedItem.ToString();
+                            string[] tab2 = selecteditem.Split(" ");
+                            string id = tab2[0];
+                            Visite visite = ConnectionDb.RecupVisite(id);
+
+                            this.Hide();
+                            var modifierVisite = new modifierVisite(user, ConnectionDb.AfficheMag(), visite);
+                            modifierVisite.Closed += (s, args) => this.Close();
+                            modifierVisite.Show();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vous ne pouvez modifier que vos visites");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selectionner une visite");
+
+                }
+                
+            }
+            catch
+            {
+               
+            }
+
+
+
         }
 
         private void VisiteCommerical_Load(object sender, EventArgs e)

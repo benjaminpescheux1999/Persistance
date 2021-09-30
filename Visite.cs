@@ -22,5 +22,11 @@ namespace Persistance
             this.magasin = magasin;
             this.commercial = commercial;
         }
+
+        public Visite()
+        {
+
+        }
+
     }
 }

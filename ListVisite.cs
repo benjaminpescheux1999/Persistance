@@ -51,10 +51,7 @@ namespace Persistance
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            listBox1.Visible = true;
-            label1.Visible = true;
-            AfficherVisites(lesVisites);
+           
         }
 
         private void button3_Click(object sender, EventArgs e)

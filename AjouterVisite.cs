@@ -62,10 +62,10 @@ namespace Persistance
 
                 ConnectionDb.ajouterVisite(datevisite, etat, tab[0], user);
 
-                MessageBox.Show("Visite ajoutÃ©e");
+                MessageBox.Show("Visite ajouté");
 
                 this.Hide();
-                var HomeCom = new HomeCom(user);
+                var HomeCom = new VisiteCommerical(ConnectionDb.AfficheVisite(),user);
                 HomeCom.Closed += (s, args) => this.Close();
                 HomeCom.Show();
             }

@@ -12,25 +12,7 @@ namespace Persistance
 {
     class Connection
     {
-        public void TestLogin(string name, string password)
-        {
-            SqlConnection maConnexion = null;
-            try
-            {
-                maConnexion = new SqlConnection(@"server=LAPTOP-TS39PMJE\SQLEXPRESS2017;database=Persistance;integrated security=true");
-                SqlCommand maCommande = new SqlCommand();
-                maCommande.Connection = maConnexion;
-                maCommande.CommandText = "SELECT * FROM Personnel where nomPers= '" + name + "' and passwordPers ='" + password + "'";
-                maConnexion.Open();
-                SqlDataReader monReader = maCommande.ExecuteReader();
 
-
-            }
-            finally
-            {
-                maConnexion.Close();
-            }
-        }
         public List<Magasin> AfficheMag()
         {
             List<Magasin> lesMagasins = new List<Magasin>();
@@ -61,6 +43,67 @@ namespace Persistance
             return lesMagasins;
         }
 
+        public Visite RecupVisite(string id)
+        {
+            Visite visite = new Visite();
+            try
+            {
+                String str = @"server=LAPTOP-TS39PMJE\SQLEXPRESS2017;database=Persistance;integrated security=true";
+                String query = "select * from visite where idvisite = " + id;
+                SqlConnection con = new SqlConnection(str);
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                DataSet ds = new DataSet();
+                // Lecture des résultats
+                SqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    visite.idvisite = dataReader["idVisite"].ToString();
+                    visite.datevisite = dataReader["dateVisite"].ToString();
+                    visite.flag = dataReader["flagVisite"].ToString();
+                    visite.magasin = dataReader["idMagasin"].ToString();
+                    visite.commercial = dataReader["idCommercial"].ToString();
+
+                }
+                con.Close();
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show(es.Message);
+            }
+            return visite;
+        }
+
+        public Magasin RecupMagasisn(string id)
+        {
+            Magasin magasin = new Magasin();
+            try
+            {
+                String str = @"server=LAPTOP-TS39PMJE\SQLEXPRESS2017;database=Persistance;integrated security=true";
+                String query = "select * from magasin where idMag = " + id;
+                SqlConnection con = new SqlConnection(str);
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                DataSet ds = new DataSet();
+                // Lecture des résultats
+                SqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    magasin.id = dataReader["idMag"].ToString();
+                    magasin.nom = dataReader["nomMag"].ToString();
+                    magasin.city = dataReader["cityMag"].ToString();
+
+                }
+                con.Close();
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show(es.Message);
+            }
+            return magasin;
+        }
         public List<Visite> AfficheVisite()
         {
             List<Visite> lesVisites = new List<Visite>();
@@ -135,6 +178,26 @@ namespace Persistance
             }
         }
 
+        public void modifierVisite(string idvisite ,DateTime datevisite, int etat, string magasin)
+        {
+            try
+            {
+                String str = @"server=LAPTOP-TS39PMJE\SQLEXPRESS2017;database=Persistance;integrated security=true";
+                String query = "update visite set dateVisite = '" + datevisite + "', flagVisite = '" + etat + "', idMagasin = '" + magasin + "' where idVisite = '" + idvisite + "'";
+                SqlConnection con = new SqlConnection(str);
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                DataSet ds = new DataSet();
+                // Lecture des résultats
+                SqlDataReader dataReader = cmd.ExecuteReader();
+
+                con.Close();
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show(es.Message);
+            }
+        }
 
         public bool VerifSuppressionVisite(string id, Personnel user)
         {

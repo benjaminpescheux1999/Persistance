@@ -21,6 +21,7 @@ namespace Persistance
             InitializeComponent();
             AfficherMag(lesMagasins);
             this.user = user;
+            
         }
         private void AfficherMag(List<Magasin> lesMagasins)
         {
@@ -48,10 +49,7 @@ namespace Persistance
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            listBox1.Visible = true;
-            label1.Visible = true;
-            AfficherMag(lesMagasins);
+       
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -69,6 +67,11 @@ namespace Persistance
                 HomeCom.Closed += (s, args) => this.Close();
                 HomeCom.Show();
             }
+        }
+
+        private void ListMag_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -100,6 +100,7 @@ namespace Persistance
             this.button2.TabIndex = 8;
             this.button2.Text = "Valider";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // modifierVisite
             // 
@@ -115,6 +116,7 @@ namespace Persistance
             this.Controls.Add(this.button1);
             this.Name = "modifierVisite";
             this.Text = "modifierVisite";
+            this.Load += new System.EventHandler(this.modifierVisite_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -17,5 +17,10 @@ namespace Persistance
             this.nom = nom;
             this.city = city;
         }
+
+        public Magasin()
+        {
+           
+        }
     }
 }

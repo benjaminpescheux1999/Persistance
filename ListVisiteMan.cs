@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Persistance
 {
-    public partial class HomeMan : Form
+    public partial class ListVisiteMan : Form
     {
-        public HomeMan()
+        public ListVisiteMan()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

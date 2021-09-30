@@ -104,6 +104,7 @@ namespace Persistance
             }
             return magasin;
         }
+
         public List<Visite> AfficheVisite()
         {
             List<Visite> lesVisites = new List<Visite>();
@@ -133,6 +134,7 @@ namespace Persistance
             }
             return lesVisites;
         }
+
         public void DeleteItemVisite(string id)
         {
             /*            int idconvert = Convert.ToInt32(id);
